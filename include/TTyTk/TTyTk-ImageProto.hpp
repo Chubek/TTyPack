@@ -6,8 +6,18 @@
 #include <cstddef>
 #include <cstdint>
 #include <string>
+#include <vector>
 
 namespace ttytk::image {
+
+// NOTE(agent): TTyUtils::ImageView names TTyTk::Image, but the manifest-owned
+// image header previously exposed only protocol encoders. This pixel container
+// is the dependency-neutral image value those encoders consume.
+struct Image {
+    std::size_t width{};
+    std::size_t height{};
+    std::vector<color::Rgb> pixels{};
+};
 
 namespace detail {
 
@@ -88,3 +98,7 @@ struct ITerm2 {
 }
 
 }  // namespace ttytk::image
+
+namespace ttytk {
+using Image = image::Image;
+}  // namespace ttytk

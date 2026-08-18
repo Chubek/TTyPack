@@ -1,6 +1,7 @@
 #pragma once
 
 #include <TTyTk/TTyTk-ColorTools.hpp>
+#include <TTyTk/TTyTk-ImageProto.hpp>
 #include <TTyUtils/TTyUtils-Widget.hpp>
 
 #include <cstdint>
@@ -37,8 +38,8 @@ private:
     Backend backend_{Backend::Auto};
 };
 
-// NOTE(agent): TTyTk::Image is absent, so show() validates and loads the
-// source while leaving backend negotiation to ImageView::set_backend().
+// NOTE(agent): TTyTk::Image is provided by the compatibility pixel container
+// in TTyTk-ImageProto.hpp; decoding file formats remains caller-owned.
 inline auto show(ImageView& view, const std::filesystem::path& path) -> bool {
     return view.load(path);
 }

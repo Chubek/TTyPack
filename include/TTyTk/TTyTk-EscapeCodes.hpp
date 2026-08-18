@@ -54,4 +54,19 @@ enum Sgr : unsigned {
     return std::string{csi} + "2J";
 }
 
+// xterm ctlseqs: OSC 8 hyperlinks use OSC 8 ; params ; URI ST, with an empty
+// URI closing the active hyperlink.
+struct Hyperlink {
+    [[nodiscard]] static inline auto open(const std::string_view uri) -> std::string {
+        return std::string{osc} + "8;;" + std::string(uri) + "\x1b\\";
+    }
+    [[nodiscard]] static inline auto close() -> std::string { return std::string{osc} + "8;;\x1b\\"; }
+};
+
 }  // namespace ttytk::esc
+
+// NOTE(agent): TTyUtils manifests name TTyTk::Hyperlink; keep a global alias
+// to the escape-code-owned builder without adding a new header.
+namespace ttytk {
+using Hyperlink = esc::Hyperlink;
+}  // namespace ttytk

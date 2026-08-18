@@ -1,5 +1,6 @@
 #pragma once
 
+#include <TTyTk/TTyTk-CellBuffer.hpp>
 #include <TTyTk/TTyTk-ColorTools.hpp>
 #include <TTyUtils/TTyUtils-Theme.hpp>
 
@@ -14,9 +15,8 @@
 
 namespace ttyutils::ui {
 
-// NOTE(agent): TTyTk::Screen is listed as a dependency but is absent from
-// the repository. Canvas therefore records clipped draw commands rather than
-// writing directly to a terminal screen.
+// NOTE(agent): TTyTk::Screen is supplied by the compatibility façade in
+// TTyTk-CellBuffer.hpp. Canvas still records clipped commands for widgets.
 struct Rect {
     int x{};
     int y{};

@@ -13,9 +13,8 @@
 
 namespace ttyutils::app {
 
-// NOTE(agent): The manifest lists TTyTk::Screen and TTyTk::CapTools, but no
-// TTyTk Screen header exists. Screen is consequently a small owned output
-// surface and capability negotiation is left to callers.
+// NOTE(agent): TTyTk::Screen is supplied by the CellBuffer compatibility
+// façade; App keeps its own output surface so it remains usable on dumb TTYs.
 struct Options {
     bool mouse{};
     bool alternate_screen{true};

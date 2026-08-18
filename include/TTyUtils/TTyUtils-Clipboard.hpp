@@ -1,5 +1,6 @@
 #pragma once
 
+#include <TTyTk/TTyTk-ClipboardTools.hpp>
 #include <TTyUtils/TTyUtils-Config.hpp>
 #include <TTyUtils/TTyUtils-Shell.hpp>
 
@@ -11,8 +12,8 @@
 
 namespace ttyutils::clip {
 
-// NOTE(agent): TTyTk::Clipboard is not present. The internal ring is the
-// conservative backend and keeps OSC/external integration out of this phase.
+// NOTE(agent): TTyTk::Clipboard is provided by the compatibility façade in
+// TTyTk-ClipboardTools.hpp; the internal ring remains the final fallback.
 enum class Backend { Osc52, External, Internal };
 
 struct Policy {

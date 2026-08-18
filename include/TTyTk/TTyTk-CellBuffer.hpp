@@ -91,4 +91,21 @@ private:
     std::vector<Cell> cells_{};
 };
 
+// NOTE(agent): The manifests refer to a TTyTk::Screen header that does not
+// exist. Screen is the minimal owning façade over the existing cell buffer.
+class Screen {
+public:
+    Screen() = default;
+    Screen(const std::size_t rows, const std::size_t columns) : buffer_(rows, columns) {}
+    [[nodiscard]] auto rows() const noexcept -> std::size_t { return buffer_.rows(); }
+    [[nodiscard]] auto columns() const noexcept -> std::size_t { return buffer_.columns(); }
+    void resize(const std::size_t rows, const std::size_t columns) { buffer_.resize(rows, columns); }
+    void clear() { buffer_.clear(); }
+    [[nodiscard]] auto cells() noexcept -> CellBuffer& { return buffer_; }
+    [[nodiscard]] auto cells() const noexcept -> const CellBuffer& { return buffer_; }
+
+private:
+    CellBuffer buffer_;
+};
+
 }  // namespace ttytk

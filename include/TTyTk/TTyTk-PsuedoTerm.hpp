@@ -131,4 +131,8 @@ private:
     int master_{-1};
 };
 
+// NOTE(agent): Several TTyUtils manifests use the corrected spelling
+// PseudoTerm, while the manifest-frozen header is intentionally PsuedoTerm.
+using PseudoTerm = PTY;
+
 }  // namespace ttytk

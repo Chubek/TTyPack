@@ -17,3 +17,15 @@ inline void clear(Selection = Global) { storage().clear(); }
 // xterm ctlseqs: OSC 52; Pc; Pd sets/queries a selection.
 [[nodiscard]] inline auto request_osc52(Selection = Global) -> std::string { return std::string{esc::osc}+"52;c;?\x1b\\"; }
 }  // namespace ttytk::clipboard
+
+// NOTE(agent): TTyUtils refers to TTyTk::Clipboard, while the manifest's
+// owning header exposes the clipboard namespace functions. This façade keeps
+// both spellings on the same storage.
+namespace ttytk {
+class Clipboard {
+public:
+    void set(const std::string_view text) { clipboard::set(text); }
+    [[nodiscard]] auto get() const -> std::string { return clipboard::get(); }
+    void clear() { clipboard::clear(); }
+};
+}  // namespace ttytk
