@@ -91,5 +91,4 @@ vgcore.*
 
 # Agentic AI
 AGENTS.md
-.agents
 .claude
